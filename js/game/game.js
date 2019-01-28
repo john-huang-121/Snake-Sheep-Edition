@@ -7,7 +7,6 @@ class Game {
     this.ctx = ctx;
     this.map = new Map(ctx);
     this.sheeps = new Sheep(ctx);
-    // this.farmers = new Farmer(ctx);
     this.grasses = [];
     this.occupied = [];
 
