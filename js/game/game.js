@@ -1,7 +1,6 @@
 import Map from './map.js';
 import Sheep from '../models/sheep.js';
-import Farmer from '../models/farmer.js';
-import Box from '../models/box.js';
+import Grass from '../models/grass.js';
 
 class Game {
   constructor(ctx) {
@@ -9,7 +8,7 @@ class Game {
     this.map = new Map(ctx);
     this.sheeps = new Sheep(ctx);
     // this.farmers = new Farmer(ctx);
-    this.boxes = [];
+    this.grasses = [];
     this.occupied = [];
 
     this.setupGame = this.setupGame.bind(this);
@@ -24,8 +23,8 @@ class Game {
   drawAll(pressedKey) {
     this.map.drawMap();
     this.sheeps.drawMovingSheep(pressedKey);
-    this.boxes.forEach((box) => 
-      box.drawBox()
+    this.grasses.forEach((grass) => 
+      grass.drawGrass()
     );
   }
 
@@ -71,23 +70,6 @@ class Game {
         moves[pressedKey][1]
         );
       }
-      
-      //build boxes F
-      if (pressedKey === 102) { 
-        console.log(this.objectOccupied(this.sheeps.x + 50, this.sheeps.y - 20));
-        if (this.objectOccupied(this.sheeps.x + 50, this.sheeps.y - 20)) {
-          this.boxes = this.boxes.concat([
-          new Box(ctx, this.sheeps.x + 50, this.sheeps.y - 20)
-        ])
-
-        this.occupied = this.occupied.concat([
-          [this.sheeps.x + 50,
-            this.sheeps.y - 20, "box", 50]
-          ]);
-        }
-      }
-      
-      // console.log(this.map.grid);
 
       this.drawAll(pressedKey); //rerender effect
     }
@@ -117,7 +99,7 @@ class Game {
   }
 
   allObjects() {
-    return [].concat(this.farmers, this.sheeps, this.boxes);
+    return [].concat(this.farmers, this.sheeps, this.grasses);
   }
 
 

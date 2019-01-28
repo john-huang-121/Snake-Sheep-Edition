@@ -1,6 +1,5 @@
 import MovingObject from '../actions/moving_object.js';
 
-
 class Farmer {
   constructor(ctx) {
     this.ctx = ctx;

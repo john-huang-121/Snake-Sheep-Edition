@@ -1,5 +1,4 @@
 import MovingObject from '../actions/moving_object.js';
-import Box from './box.js';
 const Victor = require("victor");
 
 class Sheep {
