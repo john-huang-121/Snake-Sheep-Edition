@@ -69,6 +69,8 @@ class Game {
         );
       }
 
+      this.map.updateHayLoc();
+
       this.drawAll(pressedKey); //rerender effect
     }
         

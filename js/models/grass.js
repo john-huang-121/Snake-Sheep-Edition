@@ -1,7 +1,7 @@
 export default class Grass {
   constructor(ctx, x, y) {
     this.ctx = ctx;
-    this.exist = true;
+    // this.exist = true;
     this.x = x;
     this.y = y;
   }

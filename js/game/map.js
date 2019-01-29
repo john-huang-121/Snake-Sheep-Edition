@@ -3,7 +3,7 @@ export default class Map {
     this.ctx = ctx;
     this.grid = this.generateGrid();
     this.whereSheep = [0,0];
-    this.whereHay = [0,3];
+    this.whereHay = [2,0];
     this.x = 900;
     this.y = 900;
 
@@ -55,11 +55,15 @@ export default class Map {
   }
 
   updateHayLoc() { //this will generate a new hay location as it is eaten
-    if (this.whereSheep === this.whereHay) {
-      this.whereHay = [0,4];
+    console.log(this.whereHay);
+    console.log(this.whereSheep);
+    if (this.whereSheep[0] === this.whereHay[0] && this.whereSheep[1] === this.whereHay[1]) {
+      console.log("ayy");
+      this.whereHay = [4, 0];
     }
 
-    return this.whereHay;
+    // console.log(this.whereHay);
+    // return this.whereHay;
   }
 
   drawMap() {
