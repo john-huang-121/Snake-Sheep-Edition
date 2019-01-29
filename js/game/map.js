@@ -1,11 +1,9 @@
-// import Sheep from "../models/sheep.js";
-// import Box from "../models/box.js";
-
 export default class Map {
   constructor(ctx) {
     this.ctx = ctx;
     this.grid = this.generateGrid();
     this.whereSheep = [0,0];
+    this.whereHay = [0,3];
     this.x = 900;
     this.y = 900;
 
@@ -56,10 +54,17 @@ export default class Map {
     return this.whereSheep; 
   }
 
+  updateHayLoc() { //this will generate a new hay location as it is eaten
+    if (this.whereSheep === this.whereHay) {
+      this.whereHay = [0,4];
+    }
+
+    return this.whereHay;
+  }
+
   drawMap() {
     const ctx = this.ctx;
 
-    
     ctx.clearRect(0, 0, this.x, this.y);
     ctx.fillStyle = 'darkgreen';
     ctx.fillRect(0, 0, this.x, this.y);

@@ -9,9 +9,10 @@ export default class Grass {
   drawStartingGrass() {
     const ctx = this.ctx;
 
-    // ctx.beginPath();
-    // ctx.fillStyle = "black";
-    // ctx.fillRect(180, 0, 90, 90);
+    //black tile for testing purpose
+    ctx.beginPath();
+    ctx.fillStyle = "black";
+    ctx.fillRect(180, 0, 90, 90);
 
     ctx.beginPath();
     ctx.fillStyle = "gold";

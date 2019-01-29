@@ -1,5 +1,5 @@
 import MovingObject from '../actions/moving_object.js';
-const Victor = require("victor");
+// const Victor = require("victor");
 
 class Sheep {
   constructor(ctx) {
@@ -16,7 +16,7 @@ class Sheep {
   }
 
   drawMovingSheep(pressedKey) {
-    //need to set up custom drawings
+    //need to set up custom drawings for each key
     if (pressedKey === 119) {
       //w
       if (this.count % 2 === 0) {
