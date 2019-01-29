@@ -4,13 +4,8 @@ const Victor = require("victor");
 class Sheep {
   constructor(ctx) {
     this.ctx = ctx;
-    this.player = null;
-    this.color = null;
-    this.money = null;
     this.map = null;
     this.alive = true;
-    this.health = 100;
-    this.damage = 1;
     this.x = 45;
     this.y = 45;
     this.count = 1;
@@ -73,20 +68,6 @@ class Sheep {
 
   alive() {
     //checks living status
-  }
-
-  buildBoxes() {
-    //construct a box on cursor location with f key
-    //only build around a certain radius of sheep
-  }
-
-  takeDamage() {
-    //receives damage and set health
-  }
-
-  attack() {
-    //if building, instantly destroy it
-    //else do this.damage to target
   }
 
   drawRestingRight() {
