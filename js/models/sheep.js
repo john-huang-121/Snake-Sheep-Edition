@@ -11,9 +11,9 @@ class Sheep {
     this.count = 1;
   }
 
-  drawStartingSheep() {
-    this.drawRestingRight();
-  }
+  // drawStartingSheep() {
+  //   this.drawRestingRight();
+  // }
 
   drawMovingSheep(pressedKey) {
     //need to set up custom drawings for each key
@@ -284,6 +284,30 @@ class Sheep {
     ctx.stroke();
   }
 
+  drawRestingUp() {
+    const ctx = this.ctx;
+
+    //body
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, 20, 30, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
+    // head
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y - 31, 8, 11, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+    
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y - 30, 6, 9, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+  }
+
   drawMoveUp() {
     const ctx = this.ctx;
 
@@ -337,6 +361,30 @@ class Sheep {
     ctx.fill();
   }
 
+  drawRestingDown() {
+    const ctx = this.ctx;
+    
+    //body
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, 20, 30, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
+    // head
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y + 31, 8, 11, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y + 30, 6, 9, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+  }
+
   drawMoveDown() {
     const ctx = this.ctx;
 
@@ -376,20 +424,18 @@ class Sheep {
     ctx.closePath();
     ctx.fill();
 
-    //head
+    // head
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y + 31, 8, 11, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
     ctx.fillStyle = "white";
     ctx.beginPath();
     ctx.ellipse(this.x, this.y + 30, 6, 9, Math.PI, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fill();
-
-    //black head outline
-    ctx.beginPath();
-    ctx.lineWidth = 0.5;
-    ctx.strokeStyle = 'black';
-    ctx.moveTo(this.x - 6, this.y + 28);
-    ctx.quadraticCurveTo(this.x, this.y + 17, this.x + 6, this.y + 28);
-    ctx.stroke();
   }
 }
 

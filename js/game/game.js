@@ -17,7 +17,6 @@ class Game {
   setupGame() {
     this.map.grid[0][0] = this.sheeps;
     // this.sheeps.drawStartingSheep();
-    this.sheeps.drawMoveUp();
     this.grasses.drawStartingGrass();
   }
 
