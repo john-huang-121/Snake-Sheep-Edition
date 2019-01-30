@@ -23,7 +23,7 @@ class Game {
 
   drawAll(pressedKey) {
     this.map.drawMap();
-    // this.sheeps.drawMovingSheep(pressedKey);
+    this.sheeps.drawMovingSheep(pressedKey);
     this.grasses.drawStartingGrass();
   }
 
