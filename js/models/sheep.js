@@ -11,41 +11,31 @@ class Sheep {
     this.count = 1;
   }
 
-  // drawStartingSheep() {
-  //   this.drawRestingRight();
-  // }
+  drawStartingSheep() {
+    this.drawRestingRight();
+  }
 
   drawMovingSheep(pressedKey) {
     //need to set up custom drawings for each key
-    if (pressedKey === 119) {
-      //w
+    if (pressedKey === 119) { //w
       if (this.count % 2 === 0) {
-        this.drawMoveRight();
+        this.drawMoveUp();
       } else {
-        this.drawRestingRight();
+        this.drawRestingUp();
       }
-    } else if (pressedKey === 97) {
-      //a
+    } else if (pressedKey === 97) { //a
       if (this.count % 2 === 0) {
         this.drawMoveLeft();
       } else {
         this.drawRestingLeft();
       }
-    } else if (pressedKey === 115) {
-      //s
+    } else if (pressedKey === 115) { //s
       if (this.count % 2 === 0) {
-        this.drawMoveRight();
+        this.drawMoveDown();
       } else {
-        this.drawRestingRight();
+        this.drawRestingDown();
       }
-    } else if (pressedKey === 100) {
-      //d
-      if (this.count % 2 === 0) {
-        this.drawMoveRight();
-      } else {
-        this.drawRestingRight();
-      }
-    } else {
+    } else if (pressedKey === 100) { //d
       if (this.count % 2 === 0) {
         this.drawMoveRight();
       } else {
@@ -363,7 +353,7 @@ class Sheep {
 
   drawRestingDown() {
     const ctx = this.ctx;
-    
+
     //body
     ctx.fillStyle = "white";
     ctx.beginPath();
