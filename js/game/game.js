@@ -16,13 +16,14 @@ class Game {
  
   setupGame() {
     this.map.grid[0][0] = this.sheeps;
-    this.sheeps.drawStartingSheep();
+    // this.sheeps.drawStartingSheep();
+    this.sheeps.drawMoveUp();
     this.grasses.drawStartingGrass();
   }
 
   drawAll(pressedKey) {
     this.map.drawMap();
-    this.sheeps.drawMovingSheep(pressedKey);
+    // this.sheeps.drawMovingSheep(pressedKey);
     this.grasses.drawStartingGrass();
   }
 

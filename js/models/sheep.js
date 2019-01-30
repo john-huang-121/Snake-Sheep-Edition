@@ -283,6 +283,62 @@ class Sheep {
     ctx.lineWidth = 5;
     ctx.stroke();
   }
+
+  drawMoveUp() {
+    const ctx = this.ctx;
+
+    //legs
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.moveTo(this.x + 10, this.y + 20);
+    ctx.lineTo(this.x + 10, this.y + 33);
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.moveTo(this.x - 10, this.y + 20);
+    ctx.lineTo(this.x - 10, this.y + 33);
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.moveTo(this.x + 10, this.y - 20);
+    ctx.lineTo(this.x + 10, this.y - 30);
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.moveTo(this.x - 10, this.y - 20);
+    ctx.lineTo(this.x - 10, this.y - 30);
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    //body
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, 20, 30, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
+    //head
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y - 30, 6, 9, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
+    //black head outline
+    ctx.beginPath();
+    ctx.lineWidth = 0.5;
+    ctx.strokeStyle = 'black';
+    ctx.moveTo(this.x - 6, this.y - 28);
+    ctx.quadraticCurveTo(this.x, this.y - 17, this.x + 6, this.y - 28);
+    ctx.stroke();
+
+  }
 }
 
 export default Sheep;
