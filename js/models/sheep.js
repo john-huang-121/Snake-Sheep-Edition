@@ -4,11 +4,11 @@ import MovingObject from '../actions/moving_object.js';
 class Sheep {
   constructor(ctx) {
     this.ctx = ctx;
-    this.map = null;
-    this.alive = true;
     this.x = 45;
     this.y = 45;
-    this.count = 1;
+    this.tracks = 0;
+    this.alive = true;
+    this.movementStyle = 1;
   }
 
   drawStartingSheep() {
@@ -18,32 +18,32 @@ class Sheep {
   drawMovingSheep(pressedKey) {
     //need to set up custom drawings for each key
     if (pressedKey === 119) { //w
-      if (this.count % 2 === 0) {
+      if (this.movementStyle % 2 === 0) {
         this.drawMoveUp();
       } else {
         this.drawRestingUp();
       }
     } else if (pressedKey === 97) { //a
-      if (this.count % 2 === 0) {
+      if (this.movementStyle % 2 === 0) {
         this.drawMoveLeft();
       } else {
         this.drawRestingLeft();
       }
     } else if (pressedKey === 115) { //s
-      if (this.count % 2 === 0) {
+      if (this.movementStyle % 2 === 0) {
         this.drawMoveDown();
       } else {
         this.drawRestingDown();
       }
     } else if (pressedKey === 100) { //d
-      if (this.count % 2 === 0) {
+      if (this.movementStyle % 2 === 0) {
         this.drawMoveRight();
       } else {
         this.drawRestingRight();
       }
     }
 
-    this.count++;
+    this.movementStyle++;
   }
 
   moveSheep(moveX, moveY) {
@@ -58,6 +58,16 @@ class Sheep {
 
   alive() {
     //checks living status
+  }
+
+  drawTracks() {
+    const ctx = this.ctx;
+
+    ctx.beginPath();
+    ctx.fillStyle = 'black';
+    ctx.ellipse(this.x, this.y, 15, 12, Math.PI, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
   }
 
   drawRestingRight() {
