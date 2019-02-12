@@ -26,6 +26,10 @@ export default class Map {
     return array;
   }
 
+  updateObjectLoc(x, y) {
+    
+  }
+
   updateSheepLoc(x, y) {
 
     if ((this.whereSheep[0] + x) < 0 || (this.whereSheep[0] + x) > 9) {
@@ -61,9 +65,6 @@ export default class Map {
       console.log("ayy");
       this.whereHay = [4, 0];
     }
-
-    // console.log(this.whereHay);
-    // return this.whereHay;
   }
 
   drawMap() {

@@ -60,15 +60,15 @@ class Sheep {
     //checks living status
   }
 
-  drawTracks() {
-    const ctx = this.ctx;
+  // drawTracks() {
+  //   const ctx = this.ctx;
 
-    ctx.beginPath();
-    ctx.fillStyle = 'black';
-    ctx.ellipse(this.x, this.y, 15, 12, Math.PI, 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.fill();
-  }
+  //   ctx.beginPath();
+  //   ctx.fillStyle = 'black';
+  //   ctx.ellipse(this.x, this.y, 15, 12, Math.PI, 0, Math.PI * 2);
+  //   ctx.closePath();
+  //   ctx.fill();
+  // }
 
   drawRestingRight() {
     const ctx = this.ctx;

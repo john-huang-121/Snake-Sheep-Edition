@@ -1,13 +1,13 @@
 import Map from './map.js';
 import Sheep from '../models/sheep.js';
-import Grass from '../models/grass.js';
+import Hay from '../models/hay.js';
 
 class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.map = new Map(ctx);
     this.sheeps = new Sheep(ctx);
-    this.grasses = new Grass(ctx);
+    this.hay = new Hay(ctx);
     this.occupied = [];
 
     this.setupGame = this.setupGame.bind(this);
@@ -16,14 +16,14 @@ class Game {
  
   setupGame() {
     this.map.grid[0][0] = this.sheeps;
-    this.sheeps.drawTracks();
-    this.grasses.drawStartingGrass();
+    this.sheeps.drawStartingSheep();
+    this.hay.drawStartingHay();
   }
 
   drawAll(pressedKey) {
     this.map.drawMap();
     this.sheeps.drawMovingSheep(pressedKey);
-    this.grasses.drawStartingGrass();
+    this.hay.drawStartingHay();
   }
 
   mapKey(e) {
@@ -85,13 +85,13 @@ class Game {
           okayToBuild = false;
         }
       }
-    })
+    });
 
     return okayToBuild;
   }
 
   allObjects() {
-    return [].concat(this.farmers, this.sheeps, this.grasses);
+    return [].concat(this.farmers, this.sheeps, this.hay);
   }
 
   checkLiving() {

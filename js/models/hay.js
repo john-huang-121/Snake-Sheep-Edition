@@ -1,4 +1,4 @@
-export default class Grass {
+export default class Hay {
   constructor(ctx, x, y) {
     this.ctx = ctx;
     // this.exist = true;
@@ -6,7 +6,13 @@ export default class Grass {
     this.y = y;
   }
 
-  drawStartingGrass() {
+  replaceHayWithGrass() {
+    const ctx = this.ctx;
+
+
+  }
+
+  drawStartingHay() {
     const ctx = this.ctx;
 
     //black tile for testing purpose
@@ -64,7 +70,7 @@ export default class Grass {
     ctx.stroke();
   }
 
-  drawGrass() {
+  drawHay() {
     const ctx = this.ctx;
 
     // ctx.fillStyle = "#f4b241";
