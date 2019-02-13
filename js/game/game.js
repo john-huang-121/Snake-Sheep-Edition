@@ -6,29 +6,29 @@ class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.map = new Map(ctx);
-    this.sheeps = new Sheep(ctx);
+    this.sheep = new Sheep(ctx);
     this.hay = new Hay(ctx);
-    this.occupied = [];
+    this.moveHistory = [[0,0]];
 
     this.setupGame = this.setupGame.bind(this);
     this.drawAll = this.drawAll.bind(this);
   }
  
   setupGame() {
-    this.map.updateObjectLoc(0, 0, this.sheeps);
+    this.map.updateObjectLoc(0, 0, this.sheep);
     this.map.updateObjectLoc(2, 0, this.hay);
     this.drawStartingGame();
     console.log(this.map.grid);
   }
 
   drawStartingGame() {
-    this.sheeps.drawStartingSheep();
+    this.sheep.drawStartingSheep();
     this.hay.drawHay();
   }
 
   drawAll(pressedKey) {
     this.map.drawMap();
-    this.sheeps.drawMovingSheep(pressedKey);
+    this.sheep.drawMovingSheep(pressedKey);
     this.hay.drawHay();
     console.log(this.map.grid);
   }
@@ -49,48 +49,33 @@ class Game {
 
       //updates the map grid sheep location
       if (pressedKey === 119) {
-        this.map.updateSheepLoc(0, -1, this.sheeps);
+        this.map.updateSheepLoc(0, -1, this.sheep, this.moveHistory);
                 
       } else if (pressedKey === 97) {
-        this.map.updateSheepLoc(-1, 0, this.sheeps);
+        this.map.updateSheepLoc(-1, 0, this.sheep, this.moveHistory);
                 
       } else if (pressedKey === 115) {
-        this.map.updateSheepLoc(0, 1, this.sheeps);
+        this.map.updateSheepLoc(0, 1, this.sheep, this.moveHistory);
                 
       } else if (pressedKey === 100) {
-        this.map.updateSheepLoc(1, 0, this.sheeps);
+        this.map.updateSheepLoc(1, 0, this.sheep, this.moveHistory);
                 
       }
       
-      this.sheeps.moveSheep(
+      this.moveHistory.push([this.map.whereSheep[0], this.map.whereSheep[1]]);
+      console.log(this.moveHistory);
+
+      this.sheep.moveSheep(
         moves[pressedKey][0],
         moves[pressedKey][1]
-        );
-      }
-
-      this.map.updateHayLoc(this.sheeps, this.hay);
-
-      this.drawAll(pressedKey); //rerender effect
+      );
     }
-        
-  objectOccupied(x, y) {
-    let okayToBuild = true;
-    
-    this.occupied.forEach((object) => { //up and back
-      if (object[2] === "box") {
-        if ((x < object[0] - object[3] || x > object[0] + object[3]) || (y < object[1] - object[3] || y > object[1] + object[3])) {
-          okayToBuild = true;
-        } else {
-          okayToBuild = false;
-        }
-      }
-    });
 
-    return okayToBuild;
-  }
-
-  allObjects() {
-    return [].concat(this.farmers, this.sheeps, this.hay);
+    if (this.map.whereSheep[0] === this.map.whereHay[0] && this.map.whereSheep[1] === this.map.whereHay[1]) {
+      this.map.updateHayLoc(this.sheep, this.hay);
+      this.sheep.increaseLength();
+    }
+    this.drawAll(pressedKey); //rerender effect
   }
 
   checkLiving() {

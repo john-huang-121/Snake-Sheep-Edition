@@ -6,9 +6,17 @@ class Sheep {
     this.ctx = ctx;
     this.x = 45;
     this.y = 45;
-    this.tracks = 0;
+    this.sheepLength = 1;
     this.alive = true;
     this.movementStyle = 1;
+
+    // this.increaseLength = this.increaseLength.bind(this);
+  }
+
+  increaseLength() {
+    this.sheepLength += 1;
+
+    console.log(this.sheepLength); 
   }
 
   drawStartingSheep() {

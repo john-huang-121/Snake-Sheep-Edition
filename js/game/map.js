@@ -32,8 +32,15 @@ export default class Map {
     this.grid[y][x] = object;
   }
 
-  updateSheepLoc(x, y, sheep) {
-    this.grid[this.whereSheep[1]][this.whereSheep[0]] = null;
+  updateSheepLoc(x, y, sheep, moveHistory) {
+
+    //remove the previous sheep location if no hay is eaten yet
+    if (sheep.sheepLength <= 1) {
+      this.grid[this.whereSheep[1]][this.whereSheep[0]] = null;
+    } else {
+      moveHistory[moveHistory.length - (sheep.sheepLength)];
+      // console.log(moveHistory[moveHistory.length - (sheep.sheepLength)]);
+    }
 
     //update the location of the sheep and also not let it run off the grid
     if ((this.whereSheep[0] + x) < 0 || (this.whereSheep[0] + x) > 9) {
@@ -54,17 +61,8 @@ export default class Map {
   }
 
   updateHayLoc(sheepObject, hayObject) { //this will generate a new hay location as it is eaten
-    console.log(this.whereHay);
-    console.log(this.whereSheep);
-    if (this.whereSheep[0] === this.whereHay[0] && this.whereSheep[1] === this.whereHay[1]) {
-      console.log("ayy");
-      
-      //generate next Hay location
-      this.updateObjectLoc(this.whereSheep[0], this.whereSheep[1], sheepObject);
-      this.randomNewHayLoc(hayObject);
-
-
-    }
+    this.updateObjectLoc(this.whereSheep[0], this.whereSheep[1], sheepObject);
+    this.randomNewHayLoc(hayObject);
   }
   
   randomNewHayLoc(hayObject) {
@@ -81,7 +79,6 @@ export default class Map {
     this.nextHay[0] = Math.floor(Math.random() * 10);
     this.nextHay[1] = Math.floor(Math.random() * 10);
 
-    // console.log(this.nextHay);
   }
 
   drawMap() {
