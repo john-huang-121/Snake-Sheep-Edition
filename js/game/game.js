@@ -22,7 +22,7 @@ class Game {
   }
 
   drawStartingGame() {
-    // this.sheeps.drawStartingSheep();
+    this.sheeps.drawStartingSheep();
     this.hay.drawHay();
   }
 

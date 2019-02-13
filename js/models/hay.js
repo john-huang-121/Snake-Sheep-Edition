@@ -1,7 +1,7 @@
 export default class Hay {
   constructor(ctx) {
     this.ctx = ctx;
-    this.x = 0;
+    this.x = 180;
     this.y = 0;
   }
 

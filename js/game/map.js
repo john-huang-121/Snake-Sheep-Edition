@@ -48,33 +48,40 @@ export default class Map {
       this.whereSheep[1] = this.whereSheep[1] + y;
     }
 
-    this.updateObjectLoc(this.whereSheep[y], this.whereSheep[x], sheep);
+    this.updateObjectLoc(this.whereSheep[0], this.whereSheep[1], sheep);
 
     return this.whereSheep; 
   }
 
   updateHayLoc(sheepObject, hayObject) { //this will generate a new hay location as it is eaten
-    // console.log(this.whereHay);
-    // console.log(this.whereSheep);
+    console.log(this.whereHay);
+    console.log(this.whereSheep);
     if (this.whereSheep[0] === this.whereHay[0] && this.whereSheep[1] === this.whereHay[1]) {
       console.log("ayy");
-      this.updateObjectLoc(this.whereHay[0], this.whereHay[1], sheepObject);
-
+      
       //generate next Hay location
+      this.updateObjectLoc(this.whereSheep[0], this.whereSheep[1], sheepObject);
       this.randomNewHayLoc(hayObject);
+
 
     }
   }
   
   randomNewHayLoc(hayObject) {
-    this.whereHay = this.nextHay;
+    let nextHay0 = this.nextHay[0];
+    let nextHay1 = this.nextHay[1];
+
+    this.whereHay = [nextHay0, nextHay1];
     
     hayObject.x = this.whereHay[0] * 90;
     hayObject.y = this.whereHay[1] * 90;
+
     this.updateObjectLoc(this.whereHay[0], this.whereHay[1], hayObject);
     
     this.nextHay[0] = Math.floor(Math.random() * 10);
     this.nextHay[1] = Math.floor(Math.random() * 10);
+
+    // console.log(this.nextHay);
   }
 
   drawMap() {
