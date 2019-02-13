@@ -4,6 +4,7 @@ export default class Map {
     this.grid = this.generateGrid();
     this.whereSheep = [0,0];
     this.whereHay = [2,0];
+    this.nextHay = [4,0];
     this.x = 900;
     this.y = 900;
 
@@ -26,12 +27,14 @@ export default class Map {
     return array;
   }
 
-  updateObjectLoc(x, y) {
-    
+  updateObjectLoc(x, y, object) {
+    this.grid[y][x] = object;
   }
 
-  updateSheepLoc(x, y) {
+  updateSheepLoc(x, y, sheep) {
+    this.grid[this.whereSheep[1]][this.whereSheep[0]] = null;
 
+    //update the location of the sheep and also not let it run off the grid
     if ((this.whereSheep[0] + x) < 0 || (this.whereSheep[0] + x) > 9) {
       this.whereSheep[0] = this.whereSheep[0];
     } else {
@@ -44,27 +47,29 @@ export default class Map {
       this.whereSheep[1] = this.whereSheep[1] + y;
     }
 
-    this.grid = this.grid.map(function (block, i) {
-      block = block.map(function (innerGrid, j) {
-
-        innerGrid = null;
-
-        return innerGrid;
-      });
-
-      return block;
-    });
+    this.updateObjectLoc(this.whereSheep[y], this.whereSheep[x], sheep);
 
     return this.whereSheep; 
   }
 
-  updateHayLoc() { //this will generate a new hay location as it is eaten
-    console.log(this.whereHay);
-    console.log(this.whereSheep);
+  updateHayLoc(sheepObject, hayObject) { //this will generate a new hay location as it is eaten
+    // console.log(this.whereHay);
+    // console.log(this.whereSheep);
     if (this.whereSheep[0] === this.whereHay[0] && this.whereSheep[1] === this.whereHay[1]) {
       console.log("ayy");
-      this.whereHay = [4, 0];
+      this.updateObjectLoc(this.whereHay[0], this.whereHay[1], sheepObject);
+
+      //generate next Hay location
+      this.whereHay = hayObject.nextHay;
+      hayObject.x += 180;
+      hayObject.y += 0;
+      
+      this.updateObjectLoc(this.whereHay[0], this.whereHay[1], hayObject);
     }
+  }
+
+  randomNewHayLoc() {
+
   }
 
   drawMap() {

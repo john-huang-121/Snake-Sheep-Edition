@@ -15,20 +15,27 @@ class Game {
   }
  
   setupGame() {
-    this.map.grid[0][0] = this.sheeps;
+    this.map.updateObjectLoc(0, 0, this.sheeps);
+    this.map.updateObjectLoc(2, 0, this.hay);
+    this.drawStartingGame();
+    console.log(this.map.grid);
+  }
+
+  drawStartingGame() {
     this.sheeps.drawStartingSheep();
-    this.hay.drawStartingHay();
+    this.hay.drawHay();
   }
 
   drawAll(pressedKey) {
     this.map.drawMap();
     this.sheeps.drawMovingSheep(pressedKey);
-    this.hay.drawStartingHay();
+    this.hay.drawHay();
+    console.log(this.map.grid);
   }
 
   mapKey(e) {
     let ctx = this.ctx;
-    let sheepLoc = this.map.whereSheep; 
+    let sheepLoc = this.map.whereSheep;
     
     const moves = {
       "119": [0, -90], //w
@@ -42,25 +49,17 @@ class Game {
 
       //updates the map grid sheep location
       if (pressedKey === 119) {
-        sheepLoc = this.map.updateSheepLoc(0, -1);
-        
-        this.map.grid[sheepLoc[1]][sheepLoc[0]] = this.sheeps;
-        
+        this.map.updateSheepLoc(0, -1, this.sheeps);
+                
       } else if (pressedKey === 97) {
-        sheepLoc = this.map.updateSheepLoc(-1, 0);
-        
-        this.map.grid[sheepLoc[1]][sheepLoc[0]] = this.sheeps;
-        
+        this.map.updateSheepLoc(-1, 0, this.sheeps);
+                
       } else if (pressedKey === 115) {
-        sheepLoc = this.map.updateSheepLoc(0, 1);
-        
-        this.map.grid[sheepLoc[1]][sheepLoc[0]] = this.sheeps;
-        
+        this.map.updateSheepLoc(0, 1, this.sheeps);
+                
       } else if (pressedKey === 100) {
-        sheepLoc = this.map.updateSheepLoc(1, 0);
-        
-        this.map.grid[sheepLoc[1]][sheepLoc[0]] = this.sheeps;
-        
+        this.map.updateSheepLoc(1, 0, this.sheeps);
+                
       }
       
       this.sheeps.moveSheep(
@@ -69,7 +68,7 @@ class Game {
         );
       }
 
-      this.map.updateHayLoc();
+      this.map.updateHayLoc(this.sheeps, this.hay);
 
       this.drawAll(pressedKey); //rerender effect
     }
