@@ -11,6 +11,7 @@ export default class Map {
     this.generateGrid = this.generateGrid.bind(this);
     this.updateSheepLoc = this.updateSheepLoc.bind(this);
     this.drawMap = this.drawMap.bind(this);
+    this.randomNewHayLoc = this.randomNewHayLoc.bind(this);
   }
 
   generateGrid() {
@@ -60,16 +61,20 @@ export default class Map {
       this.updateObjectLoc(this.whereHay[0], this.whereHay[1], sheepObject);
 
       //generate next Hay location
-      this.whereHay = hayObject.nextHay;
-      hayObject.x += 180;
-      hayObject.y += 0;
-      
-      this.updateObjectLoc(this.whereHay[0], this.whereHay[1], hayObject);
+      this.randomNewHayLoc(hayObject);
+
     }
   }
-
-  randomNewHayLoc() {
-
+  
+  randomNewHayLoc(hayObject) {
+    this.whereHay = this.nextHay;
+    
+    hayObject.x = this.whereHay[0] * 90;
+    hayObject.y = this.whereHay[1] * 90;
+    this.updateObjectLoc(this.whereHay[0], this.whereHay[1], hayObject);
+    
+    this.nextHay[0] = Math.floor(Math.random() * 10);
+    this.nextHay[1] = Math.floor(Math.random() * 10);
   }
 
   drawMap() {
