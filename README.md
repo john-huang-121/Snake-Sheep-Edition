@@ -1,6 +1,6 @@
 # Snake: Sheep Edition
 
-[Live Link]()
+[Live Link](https://coconutman19.github.io/Snake-Sheep-Edition/)
 
 ## Description
 A new take on the classic game of snake, except with sheep! As the main sheep eats the haystack, there will be more and more sheep added to the end of the main sheep. If the main sheep runs into any part of itself, then the player loses and the game ends.
