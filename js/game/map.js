@@ -100,6 +100,9 @@ export default class Map {
     this.nextHay[0] = Math.floor(Math.random() * 10);
     this.nextHay[1] = Math.floor(Math.random() * 10);
 
+    if (this.grid[this.nextHay[0]][this.nextHay[1]] !== null) {
+      this.randomNewHayLoc(hayObject);
+    }
   }
 
   drawMap() {
