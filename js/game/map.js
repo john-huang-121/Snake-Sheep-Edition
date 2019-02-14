@@ -1,3 +1,5 @@
+import Sheep from "../models/sheep.js";
+
 export default class Map {
   constructor(ctx) {
     this.ctx = ctx;
@@ -32,14 +34,33 @@ export default class Map {
     this.grid[y][x] = object;
   }
 
-  updateSheepLoc(x, y, sheep, moveHistory) {
+  updateSheepLoc(x, y, sheep, moveHistory, ctx) {
 
     //remove the previous sheep location if no hay is eaten yet
-    if (sheep.sheepLength <= 1) {
-      this.grid[this.whereSheep[1]][this.whereSheep[0]] = null;
+    if (sheep[0].sheepLength <= 1) {
+      this.updateObjectLoc(this.whereSheep[0], this.whereSheep[1], null);
     } else {
-      moveHistory[moveHistory.length - (sheep.sheepLength)];
-      // console.log(moveHistory[moveHistory.length - (sheep.sheepLength)]);
+      //slice from the length of sheep to current sheep
+      let occupiedSheep = moveHistory.slice(moveHistory.length - (sheep[0].sheepLength - 1), moveHistory.length);
+      console.log(occupiedSheep);
+
+      //delete previous sheeps
+      sheep.splice(1, sheep.length - 1);
+
+      occupiedSheep.forEach(sheepHerd => {
+        let newSheep = new Sheep(ctx, sheepHerd[0] * 90 + 45, sheepHerd[1] * 90 + 45);
+        
+        this.updateObjectLoc(sheepHerd[0], sheepHerd[1], newSheep);
+        
+        sheep.push(newSheep);
+      });
+
+      //clear the last sheep of the chain
+      this.updateObjectLoc(
+        moveHistory[moveHistory.length - (sheep[0].sheepLength)][0],
+        moveHistory[moveHistory.length - (sheep[0].sheepLength)][1],
+        null
+      );
     }
 
     //update the location of the sheep and also not let it run off the grid
@@ -55,7 +76,7 @@ export default class Map {
       this.whereSheep[1] = this.whereSheep[1] + y;
     }
 
-    this.updateObjectLoc(this.whereSheep[0], this.whereSheep[1], sheep);
+    this.updateObjectLoc(this.whereSheep[0], this.whereSheep[1], sheep[0]);
 
     return this.whereSheep; 
   }
