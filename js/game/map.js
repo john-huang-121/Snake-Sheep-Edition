@@ -7,6 +7,7 @@ export default class Map {
     this.whereSheep = [0,0];
     this.whereHay = [2,0];
     this.nextHay = [4,0];
+    //this.occupied would store the slices of sheep generated from the move history
     this.x = 900;
     this.y = 900;
 

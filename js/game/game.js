@@ -2,6 +2,13 @@ import Map from './map.js';
 import Sheep from '../models/sheep.js';
 import Hay from '../models/hay.js';
 
+// Todo:
+// 1. Moving sheep. (request animation frame, that reads the last key)
+// 2. Sheep facing the right direction. (add in directionality to move history)
+// 3. Scoreboard. (check the length of the sheep)
+// 4. Unit collision. (variable that stores occupied spaces in map)
+// 5. Hay should only materialize on green squares. (variable that stores occupied spaces in map)
+
 class Game {
   constructor(ctx) {
     this.ctx = ctx;
