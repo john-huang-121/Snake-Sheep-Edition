@@ -53,7 +53,8 @@ export default class Map {
 
       occupiedSheep.forEach(sheepHerd => {
         let newSheep = new Sheep(ctx, sheepHerd[0] * 90 + 45, sheepHerd[1] * 90 + 45);
-        
+         
+        //swapped sheepherd[1] and [0]
         this.updateObjectLoc(sheepHerd[0], sheepHerd[1], newSheep);
         
         sheep.push(newSheep);
@@ -97,7 +98,8 @@ export default class Map {
       this.whereHay[0] = Math.floor(Math.random() * 10);
       this.whereHay[1] = Math.floor(Math.random() * 10);
       
-      if (this.grid[this.whereHay[0]][this.whereHay[1]] === null) {
+      // debugger;
+      if (this.grid[this.whereHay[1]][this.whereHay[0]] === null) {
         occupied = false;
         console.log('broke out');
       }
