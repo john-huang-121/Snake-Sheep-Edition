@@ -4,7 +4,6 @@ import Hay from '../models/hay.js';
 
 // Todo:
 // 1. Moving sheep. (request animation frame, that reads the last key)
-// 2. Sheep facing the right direction. (add in directionality to move history)
 // 3. Scoreboard. (check the length of the sheep)
 // 4. Unit collision. (variable that stores occupied spaces in map)
 // 5. Hay should only materialize on green squares. (variable that stores occupied spaces in map)
@@ -48,7 +47,7 @@ class Game {
       }
     });
     this.hay.drawHay();
-    // console.log(this.map.grid);
+    console.log(this.map.grid);
   }
 
   mapKey(e) {
@@ -89,7 +88,7 @@ class Game {
     }
 
     if (this.map.whereSheep[0] === this.map.whereHay[0] && this.map.whereSheep[1] === this.map.whereHay[1]) {
-      this.map.updateHayLoc(this.sheep[0], this.hay);
+      this.map.updateHayLoc(this.sheep[0], this.hay, this.occupiedSpace);
       this.sheep[0].increaseLength();
     }
 
