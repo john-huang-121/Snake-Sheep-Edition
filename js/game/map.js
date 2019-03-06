@@ -35,7 +35,7 @@ export default class Map {
     this.grid[y][x] = object;
   }
 
-  updateSheepLoc(x, y, sheep, moveHistory, ctx) {
+  updateSheepLoc(x, y, sheep, moveHistory, updateOccupiedSpace, ctx) {
 
     //remove the previous sheep location if no hay is eaten yet
     if (sheep[0].sheepLength <= 1) {
@@ -43,10 +43,13 @@ export default class Map {
     } else {
       //slice from the length of sheep to current sheep
       let occupiedSheep = moveHistory.slice(moveHistory.length - (sheep[0].sheepLength - 1), moveHistory.length);
-      console.log(occupiedSheep);
 
+      //updates occupied space by sheeps
+      updateOccupiedSpace(occupiedSheep);
+      
       //delete previous sheeps
       sheep.splice(1, sheep.length - 1);
+      
 
       occupiedSheep.forEach(sheepHerd => {
         let newSheep = new Sheep(ctx, sheepHerd[0] * 90 + 45, sheepHerd[1] * 90 + 45);

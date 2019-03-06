@@ -15,8 +15,10 @@ class Game {
     this.map = new Map(ctx);
     this.sheep = [new Sheep(ctx)];
     this.hay = new Hay(ctx);
-    this.moveHistory = [[0,0]];
+    this.moveHistory = [[0,0,100]];
+    this.occupiedSpace = [];
 
+    this.updateOccupiedSpace = this.updateOccupiedSpace.bind(this);
     this.setupGame = this.setupGame.bind(this);
     this.drawAll = this.drawAll.bind(this);
   }
@@ -32,11 +34,21 @@ class Game {
     this.hay.drawHay();
   }
 
+  updateOccupiedSpace(arrSlice) {
+    this.occupiedSpace = arrSlice;
+  }
+
   drawAll(pressedKey) {
     this.map.drawMap();
-    this.sheep.forEach(sheep => sheep.drawMovingSheep(pressedKey));
+    this.sheep.forEach((sheep, index) => {
+      if (index === 0) {
+        sheep.drawMovingSheep(pressedKey);
+      } else {
+        sheep.drawMovingSheep(this.occupiedSpace[index - 1][2]);
+      }
+    });
     this.hay.drawHay();
-    console.log(this.map.grid);
+    // console.log(this.map.grid);
   }
 
   mapKey(e) {
@@ -55,21 +67,20 @@ class Game {
 
       //updates the map grid sheep location
       if (pressedKey === 119) {
-        this.map.updateSheepLoc(0, -1, this.sheep, this.moveHistory, this.ctx);
+        this.map.updateSheepLoc(0, -1, this.sheep, this.moveHistory, this.updateOccupiedSpace, this.ctx);
                 
       } else if (pressedKey === 97) {
-        this.map.updateSheepLoc(-1, 0, this.sheep, this.moveHistory, this.ctx);
+        this.map.updateSheepLoc(-1, 0, this.sheep, this.moveHistory, this.updateOccupiedSpace, this.ctx);
                 
       } else if (pressedKey === 115) {
-        this.map.updateSheepLoc(0, 1, this.sheep, this.moveHistory, this.ctx);
+        this.map.updateSheepLoc(0, 1, this.sheep, this.moveHistory, this.updateOccupiedSpace, this.ctx);
                 
       } else if (pressedKey === 100) {
-        this.map.updateSheepLoc(1, 0, this.sheep, this.moveHistory, this.ctx);
+        this.map.updateSheepLoc(1, 0, this.sheep, this.moveHistory, this.updateOccupiedSpace, this.ctx);
                 
       }
             
-      this.moveHistory.push([this.map.whereSheep[0], this.map.whereSheep[1]]);
-      // console.log(this.moveHistory);
+      this.moveHistory.push([this.map.whereSheep[0], this.map.whereSheep[1], pressedKey]);
 
       this.sheep[0].moveSheep(
         moves[pressedKey][0],
