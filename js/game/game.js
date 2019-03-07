@@ -14,9 +14,7 @@ class Game {
     this.sheep = [new Sheep(ctx)];
     this.hay = new Hay(ctx);
     this.moveHistory = [[0,0,100]];
-    this.occupiedSpace = [];
 
-    this.updateOccupiedSpace = this.updateOccupiedSpace.bind(this);
     this.setupGame = this.setupGame.bind(this);
     this.drawAll = this.drawAll.bind(this);
   }
@@ -32,17 +30,13 @@ class Game {
     this.hay.drawHay();
   }
 
-  updateOccupiedSpace(arrSlice) {
-    this.occupiedSpace = arrSlice;
-  }
-
   drawAll(pressedKey) {
     this.map.drawMap();
     this.sheep.forEach((sheep, index) => {
       if (index === 0) {
         sheep.drawMovingSheep(pressedKey);
       } else {
-        sheep.drawMovingSheep(this.occupiedSpace[index - 1][2]);
+        sheep.drawMovingSheep(this.map.occupiedSpace[index - 1][2]);
       }
     });
     this.hay.drawHay();
@@ -65,16 +59,16 @@ class Game {
 
       //updates the map grid sheep location
       if (pressedKey === 119) {
-        this.map.updateSheepLoc(0, -1, this.sheep, this.moveHistory, this.updateOccupiedSpace, this.ctx);
+        this.map.updateSheepLoc(0, -1, this.sheep, this.moveHistory, this.ctx);
                 
       } else if (pressedKey === 97) {
-        this.map.updateSheepLoc(-1, 0, this.sheep, this.moveHistory, this.updateOccupiedSpace, this.ctx);
+        this.map.updateSheepLoc(-1, 0, this.sheep, this.moveHistory, this.ctx);
                 
       } else if (pressedKey === 115) {
-        this.map.updateSheepLoc(0, 1, this.sheep, this.moveHistory, this.updateOccupiedSpace, this.ctx);
+        this.map.updateSheepLoc(0, 1, this.sheep, this.moveHistory, this.ctx);
                 
       } else if (pressedKey === 100) {
-        this.map.updateSheepLoc(1, 0, this.sheep, this.moveHistory, this.updateOccupiedSpace, this.ctx);
+        this.map.updateSheepLoc(1, 0, this.sheep, this.moveHistory, this.ctx);
                 
       }
             
@@ -92,18 +86,18 @@ class Game {
       this.sheep[0].increaseLength();
     }
 
-    //lose condition when it runs into it's own tail
-    this.occupiedSpace.forEach((eachTrailingSheep) => {
+    this.checkLosingCollision();
+    
+    this.drawAll(pressedKey); //rerender effect
+  }
+  
+  //lose condition when it runs into it's own tail
+  checkLosingCollision() {
+    this.map.occupiedSpace.forEach((eachTrailingSheep) => {
       if (this.map.whereSheep[0] === eachTrailingSheep[0] && this.map.whereSheep[1] === eachTrailingSheep[1]) {
         console.log('you lose');
       }
-    })
-
-    this.drawAll(pressedKey); //rerender effect
-  }
-
-  checkLiving() {
-    //checks whether models are alive or dead. If dead, remove from game?
+    });
   }
 
 }

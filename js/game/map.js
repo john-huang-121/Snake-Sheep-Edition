@@ -7,10 +7,11 @@ export default class Map {
     this.whereSheep = [0,0];
     this.whereHay = [2,0];
     this.nextHay = [4,0];
-    //this.occupied would store the slices of sheep generated from the move history
+    this.occupiedSpace = [];
     this.x = 900;
     this.y = 900;
 
+    this.updateOccupiedSpace = this.updateOccupiedSpace.bind(this);
     this.generateGrid = this.generateGrid.bind(this);
     this.updateSheepLoc = this.updateSheepLoc.bind(this);
     this.drawMap = this.drawMap.bind(this);
@@ -31,11 +32,15 @@ export default class Map {
     return array;
   }
 
+  updateOccupiedSpace(arrSlice) {
+    this.occupiedSpace = arrSlice;
+  }
+
   updateObjectLoc(x, y, object) {
     this.grid[y][x] = object;
   }
 
-  updateSheepLoc(x, y, sheep, moveHistory, updateOccupiedSpace, ctx) {
+  updateSheepLoc(x, y, sheep, moveHistory, ctx) {
 
     //remove the previous sheep location if no hay is eaten yet
     if (sheep[0].sheepLength <= 1) {
@@ -45,7 +50,7 @@ export default class Map {
       let occupiedSheep = moveHistory.slice(moveHistory.length - (sheep[0].sheepLength - 1), moveHistory.length);
 
       //updates occupied space by sheeps
-      updateOccupiedSpace(occupiedSheep);
+      this.updateOccupiedSpace(occupiedSheep);
       
       //delete previous sheeps
       sheep.splice(1, sheep.length - 1);
@@ -86,12 +91,12 @@ export default class Map {
     return this.whereSheep; 
   }
 
-  updateHayLoc(sheepObject, hayObject, occupiedSpace) { //this will generate a new hay location as it is eaten
+  updateHayLoc(sheepObject, hayObject) { //this will generate a new hay location as it is eaten
     this.updateObjectLoc(this.whereSheep[0], this.whereSheep[1], sheepObject);
-    this.randomNewHayLoc(hayObject, occupiedSpace);
+    this.randomNewHayLoc(hayObject);
   }
   
-  randomNewHayLoc(hayObject, occupiedSpace) {
+  randomNewHayLoc(hayObject) {
     let occupied = true;
 
     while (occupied) {
