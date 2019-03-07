@@ -5,7 +5,6 @@ import Hay from '../models/hay.js';
 // Todo:
 // 1. Moving sheep. (request animation frame, that reads the last key)
 // 3. Scoreboard. (check the length of the sheep)
-// 4. Unit collision. (variable that stores occupied spaces in map)
 
 class Game {
   constructor(ctx) {
@@ -15,6 +14,7 @@ class Game {
     this.hay = new Hay(ctx);
     this.moveHistory = [[0,0,100]];
 
+    this.checkScore = this.checkScore.bind(this);
     this.setupGame = this.setupGame.bind(this);
     this.drawAll = this.drawAll.bind(this);
   }
@@ -88,6 +88,8 @@ class Game {
 
     this.checkLosingCollision();
     
+    this.checkScore();
+
     this.drawAll(pressedKey); //rerender effect
   }
   
@@ -95,9 +97,15 @@ class Game {
   checkLosingCollision() {
     this.map.occupiedSpace.forEach((eachTrailingSheep) => {
       if (this.map.whereSheep[0] === eachTrailingSheep[0] && this.map.whereSheep[1] === eachTrailingSheep[1]) {
-        console.log('you lose');
+        alert('you lose');
       }
     });
+  }
+
+  checkScore() {
+    let scoreElement = document.getElementById('game-score');
+
+    scoreElement.innerText = `Score: ${this.sheep[0].sheepLength - 1}`;
   }
 
 }

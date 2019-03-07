@@ -6,6 +6,7 @@ import Game from './game/game.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("game-screen");
+
   canvas.width = 900;
   canvas.height = 900;
   const ctx = canvas.getContext("2d");
