@@ -46,7 +46,7 @@ class Game {
       }
     });
     this.hay.drawHay();
-    console.log(this.map.grid);
+    // console.log(this.map.grid);
   }
 
   mapKey(e) {
@@ -91,6 +91,13 @@ class Game {
       this.map.updateHayLoc(this.sheep[0], this.hay, this.occupiedSpace);
       this.sheep[0].increaseLength();
     }
+
+    //lose condition when it runs into it's own tail
+    this.occupiedSpace.forEach((eachTrailingSheep) => {
+      if (this.map.whereSheep[0] === eachTrailingSheep[0] && this.map.whereSheep[1] === eachTrailingSheep[1]) {
+        console.log('you lose');
+      }
+    })
 
     this.drawAll(pressedKey); //rerender effect
   }
