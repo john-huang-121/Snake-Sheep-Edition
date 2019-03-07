@@ -98,13 +98,10 @@ export default class Map {
       this.whereHay[0] = Math.floor(Math.random() * 10);
       this.whereHay[1] = Math.floor(Math.random() * 10);
       
-      // debugger;
       if (this.grid[this.whereHay[1]][this.whereHay[0]] === null) {
         occupied = false;
-        console.log('broke out');
       }
       
-      console.log(this.grid[this.whereHay[0]][this.whereHay[1]], this.whereHay[0], this.whereHay[1]);
     }
     
     hayObject.x = this.whereHay[0] * 90;

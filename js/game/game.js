@@ -6,7 +6,6 @@ import Hay from '../models/hay.js';
 // 1. Moving sheep. (request animation frame, that reads the last key)
 // 3. Scoreboard. (check the length of the sheep)
 // 4. Unit collision. (variable that stores occupied spaces in map)
-// 5. Hay should only materialize on green squares. (variable that stores occupied spaces in map)
 
 class Game {
   constructor(ctx) {
@@ -81,6 +80,7 @@ class Game {
             
       this.moveHistory.push([this.map.whereSheep[0], this.map.whereSheep[1], pressedKey]);
 
+      //update the sheep's location
       this.sheep[0].moveSheep(
         moves[pressedKey][0],
         moves[pressedKey][1]
