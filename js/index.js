@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas.getContext("2d");
   
   let game = new Game(ctx, 1, 1);
+
   game.drawAll();
   game.setupGame();
-  window.addEventListener("keypress", (e) => game.mapKey(e));
-
+  window.addEventListener("keypress", (e) => game.startGameAnimation(e));
   }
 );
