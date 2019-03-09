@@ -2,9 +2,6 @@ import Map from './map.js';
 import Sheep from '../models/sheep.js';
 import Hay from '../models/hay.js';
 
-// Todo:
-// 1. Moving sheep. (request animation frame, that reads the last key)
-
 class Game {
   constructor(ctx) {
     this.ctx = ctx;
