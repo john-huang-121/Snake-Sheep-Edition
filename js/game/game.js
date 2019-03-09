@@ -12,11 +12,11 @@ class Game {
     this.sheep = [new Sheep(ctx)];
     this.hay = new Hay(ctx);
     this.moveHistory = [[0, 0, 100]];
-    this.lastKey = 100;
+    this.lastKey = null;
     this.startGame = false;
-    this.milliSecondsPerFrame = 999; //frames per second
-    this.startTime;
+    this.difficulty = 500;
 
+    this.setDifficulty = this.setDifficulty.bind(this);
     this.startGameAnimation = this.startGameAnimation.bind(this);
     this.gameAnimation = this.gameAnimation.bind(this);
     this.checkScore = this.checkScore.bind(this);
@@ -35,6 +35,24 @@ class Game {
     this.hay.drawHay();
   }
 
+  setDifficulty(difficulty) {
+    console.log(difficulty);
+
+    if (difficulty === 'easy') {
+      this.difficulty = 1000;
+
+      document.getElementById('difficulty-display').innerText = 'Difficulty: Easy'
+    } else if (difficulty === 'medium') {
+      this.difficulty = 500;
+
+      document.getElementById('difficulty-display').innerText = 'Difficulty: Medium'
+    } else if (difficulty === 'hard') {
+      this.difficulty = 100;
+
+      document.getElementById('difficulty-display').innerText = 'Difficulty: Hard'
+    }
+  }
+
   drawAll(pressedKey) {
     this.map.drawMap();
     this.sheep.forEach((sheep, index) => {
@@ -45,10 +63,9 @@ class Game {
       }
     });
     this.hay.drawHay();
-    // console.log(this.map.grid);
   }
 
-  //from m1erickson in Stackoverflow https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
+  //throttling animation frames with setTimeout https://www.kirupa.com/html5/animating_with_requestAnimationFrame.htm
   startGameAnimation(e) {
     this.startTime = new Date();
     this.lastKey = e;
@@ -62,13 +79,13 @@ class Game {
 
   gameAnimation(e) {
     setTimeout(() => {
-
       requestAnimationFrame(this.gameAnimation);
 
       this.mapKey(this.lastKey);
-    }, 500);
+    }, this.difficulty);
   }
 
+  //from m1erickson in Stackoverflow https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
   // gameAnimation(e) {
   //   let runningTime = new Date();
   //   let elapsedTimeSec = runningTime.getMilliseconds() - this.startTime.getMilliseconds();
@@ -76,25 +93,25 @@ class Game {
 
   //     requestAnimationFrame(this.gameAnimation);
 
-      // console.log(elapsedTimeSec);
-      // console.log(framesCycle);
-      
-      // if (e.keyCode === 100) {
-      //     this.startGame = true;
-      //   this.lastKey = e;
-      // }
-    
-    // if (framesCycle %  === 1) {
-    //   console.log(e.keyCode);
+  // console.log(elapsedTimeSec);
+  // console.log(framesCycle);
 
-    //   if (this.startGame === true) {
-    //     if (this.lastKey) {
-    //       this.mapKey(this.lastKey);
-    //     } else {
-    //       this.mapKey(e);
-    //     }
-    //   }
-    // }
+  // if (e.keyCode === 100) {
+  //     this.startGame = true;
+  //   this.lastKey = e;
+  // }
+
+  // if (framesCycle %  === 1) {
+  //   console.log(e.keyCode);
+
+  //   if (this.startGame === true) {
+  //     if (this.lastKey) {
+  //       this.mapKey(this.lastKey);
+  //     } else {
+  //       this.mapKey(e);
+  //     }
+  //   }
+  // }
   // }
 
   //speed doubles every time you press a key
@@ -150,8 +167,6 @@ class Game {
     this.checkLosingCollision();
 
     this.checkScore();
-
-    // console.log(this.lastKey);
 
     //rerender effect
     this.drawAll(pressedKey);

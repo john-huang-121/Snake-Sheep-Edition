@@ -13,8 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
   
   let game = new Game(ctx, 1, 1);
 
+  
   game.drawAll();
   game.setupGame();
   window.addEventListener("keypress", (e) => game.startGameAnimation(e));
+
+  document.getElementById('easy').addEventListener('click', () => game.setDifficulty('easy'));
+  document.getElementById('medium').addEventListener('click', () => game.setDifficulty('medium'));
+  document.getElementById('hard').addEventListener('click', () => game.setDifficulty('hard'));
   }
 );
