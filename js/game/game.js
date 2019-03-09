@@ -85,37 +85,6 @@ class Game {
     }, this.difficulty);
   }
 
-  //from m1erickson in Stackoverflow https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
-  // gameAnimation(e) {
-  //   let runningTime = new Date();
-  //   let elapsedTimeSec = runningTime.getMilliseconds() - this.startTime.getMilliseconds();
-  //   let framesCycle = runningTime.getSeconds()
-
-  //     requestAnimationFrame(this.gameAnimation);
-
-  // console.log(elapsedTimeSec);
-  // console.log(framesCycle);
-
-  // if (e.keyCode === 100) {
-  //     this.startGame = true;
-  //   this.lastKey = e;
-  // }
-
-  // if (framesCycle %  === 1) {
-  //   console.log(e.keyCode);
-
-  //   if (this.startGame === true) {
-  //     if (this.lastKey) {
-  //       this.mapKey(this.lastKey);
-  //     } else {
-  //       this.mapKey(e);
-  //     }
-  //   }
-  // }
-  // }
-
-  //speed doubles every time you press a key
-
   mapKey(e) {
     let ctx = this.ctx;
     let sheepLoc = this.map.whereSheep;
@@ -192,3 +161,34 @@ class Game {
 }
 
 export default Game;
+
+  //from m1erickson in Stackoverflow https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
+  // difficulty implementation
+  
+  // gameAnimation(e) {
+  //   let runningTime = new Date();
+  //   let elapsedTimeSec = runningTime.getMilliseconds() - this.startTime.getMilliseconds();
+  //   let framesCycle = runningTime.getSeconds()
+
+  //     requestAnimationFrame(this.gameAnimation);
+
+  // console.log(elapsedTimeSec);
+  // console.log(framesCycle);
+
+  // if (e.keyCode === 100) {
+  //     this.startGame = true;
+  //   this.lastKey = e;
+  // }
+
+  // if (framesCycle %  === 1) {
+  //   console.log(e.keyCode);
+
+  //   if (this.startGame === true) {
+  //     if (this.lastKey) {
+  //       this.mapKey(this.lastKey);
+  //     } else {
+  //       this.mapKey(e);
+  //     }
+  //   }
+  // }
+  // }

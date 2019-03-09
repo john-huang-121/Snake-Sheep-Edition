@@ -9,7 +9,6 @@ class Sheep {
     this.sheepLength = 1;
     this.alive = true;
     this.movementStyle = 1;
-
   }
 
   increaseLength() {
