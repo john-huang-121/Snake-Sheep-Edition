@@ -162,33 +162,32 @@ class Game {
 
 export default Game;
 
-  //from m1erickson in Stackoverflow https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
-  // difficulty implementation
-  
-  // gameAnimation(e) {
-  //   let runningTime = new Date();
-  //   let elapsedTimeSec = runningTime.getMilliseconds() - this.startTime.getMilliseconds();
-  //   let framesCycle = runningTime.getSeconds()
+// from m1erickson in Stackoverflow https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
+// More difficult, but working; requires this.then; this.fpsInterval;
 
-  //     requestAnimationFrame(this.gameAnimation);
+// startGameAnimation(e) {
+//   this.fpsInterval = 1000 / 10; //10 is the fps
+//   this.then = Date.now();
+//   this.lastKey = e;
 
-  // console.log(elapsedTimeSec);
-  // console.log(framesCycle);
+//   if (this.startGame === false) {
+//     this.startGame = true;
 
-  // if (e.keyCode === 100) {
-  //     this.startGame = true;
-  //   this.lastKey = e;
-  // }
+//     this.gameAnimation();
+//   }
+// }
 
-  // if (framesCycle %  === 1) {
-  //   console.log(e.keyCode);
+// gameAnimation() {
 
-  //   if (this.startGame === true) {
-  //     if (this.lastKey) {
-  //       this.mapKey(this.lastKey);
-  //     } else {
-  //       this.mapKey(e);
-  //     }
-  //   }
-  // }
-  // }
+//   requestAnimationFrame(this.gameAnimation);
+
+//   let now = Date.now();
+//   let elapsed = now - this.then;
+
+//   if (elapsed > this.fpsInterval) {
+
+//     this.then = now - (elapsed % this.fpsInterval);
+
+//     this.mapKey(this.lastKey);
+//   }
+// }
