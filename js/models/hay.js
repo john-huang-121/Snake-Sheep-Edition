@@ -11,11 +11,6 @@ export default class Hay {
 
   drawHay() {
     const ctx = this.ctx;
-
-    //black tile for testing purpose
-    // ctx.beginPath();
-    // ctx.fillStyle = "black";
-    // ctx.fillRect(0 + this.x, 0 + this.y, 90, 90);
     
     ctx.beginPath();
     ctx.fillStyle = "gold";
@@ -52,6 +47,35 @@ export default class Hay {
     ctx.lineTo(80 + this.x, 65 + this.y);
     ctx.lineTo(70 + this.x, 70 + this.y);
     ctx.fill();
+
+    //haystack outline
+    ctx.beginPath();
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.moveTo(20 + this.x, 20 + this.y);
+    ctx.lineTo(9 + this.x, 25 + this.y);
+    ctx.lineTo(20 + this.x, 30 + this.y);
+    ctx.lineTo(9 + this.x, 35 + this.y);
+    ctx.lineTo(20 + this.x, 40 + this.y);
+    ctx.lineTo(9 + this.x, 45 + this.y);
+    ctx.lineTo(20 + this.x, 50 + this.y);
+    ctx.lineTo(9 + this.x, 55 + this.y);
+    ctx.lineTo(20 + this.x, 60 + this.y);
+    ctx.lineTo(9 + this.x, 65 + this.y);
+    ctx.lineTo(20 + this.x, 70 + this.y);
+    ctx.lineTo(70 + this.x, 70 + this.y);
+    ctx.lineTo(80 + this.x, 65 + this.y);
+    ctx.lineTo(70 + this.x, 60 + this.y);
+    ctx.lineTo(80 + this.x, 55 + this.y);
+    ctx.lineTo(70 + this.x, 50 + this.y);
+    ctx.lineTo(80 + this.x, 45 + this.y);
+    ctx.lineTo(70 + this.x, 40 + this.y);
+    ctx.lineTo(80 + this.x, 35 + this.y);
+    ctx.lineTo(70 + this.x, 30 + this.y);
+    ctx.lineTo(80 + this.x, 25 + this.y);
+    ctx.lineTo(70 + this.x, 20 + this.y);
+    ctx.lineTo(20 + this.x, 20 + this.y);
+    ctx.stroke();
 
     //left to right bundle line
     ctx.beginPath();
