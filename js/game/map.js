@@ -115,52 +115,61 @@ export default class Map {
     this.updateObjectLoc(this.whereHay[0], this.whereHay[1], hayObject);
   }
 
+  drawGrasses(ctx, gridX, gridY) {
+    let tileIncrementX = 90;
+    let tileIncrementY;
+
+    for(let i = 0; i < gridY - 1; i += 2) {
+      tileIncrementY = 90 * i;
+
+      for(let j = 0; j < gridX - 1; j += 2) {
+
+        //grass fill green
+        ctx.beginPath();
+        ctx.fillStyle = 'green';
+        ctx.lineTo(120 + (tileIncrementX * j), 60 + (tileIncrementY));
+        ctx.lineTo(120 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(120 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(130 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(130 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(135 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(135 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(140 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(140 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(150 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(150 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(150 + (tileIncrementX * j), 60 + (tileIncrementY));
+        ctx.fill();
+        
+        //grass outline black
+        ctx.beginPath();
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
+        ctx.lineTo(120 + (tileIncrementX * j), 60 + (tileIncrementY));
+        ctx.lineTo(120 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(120 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(130 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(130 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(135 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(135 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(140 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(140 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(150 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(150 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(150 + (tileIncrementX * j), 60 + (tileIncrementY));
+        ctx.stroke();
+      }
+    }
+  }
+
   drawMap() {
     const ctx = this.ctx;
-
+    
     ctx.clearRect(0, 0, this.x, this.y);
     ctx.fillStyle = 'darkgreen';
     ctx.fillRect(0, 0, this.x, this.y);
 
-    //testing purposes to see rendered tiles
-    // ctx.clearRect(90, 0, 90, 90);
-    // ctx.fillStyle = 'red';
-    // ctx.fillRect(90, 0, 90, 90);
-
-    //grass fill green
-    ctx.beginPath();
-    ctx.fillStyle = 'green';
-    ctx.lineTo(120, 60);
-    ctx.lineTo(120, 30);
-    ctx.lineTo(120, 30);
-    ctx.lineTo(130, 45);
-    ctx.lineTo(130, 45);
-    ctx.lineTo(135, 30);
-    ctx.lineTo(135, 30);
-    ctx.lineTo(140, 45);
-    ctx.lineTo(140, 45);
-    ctx.lineTo(150, 30);
-    ctx.lineTo(150, 30);
-    ctx.lineTo(150, 60);
-    ctx.fill();
-
-    //grass outline black
-    ctx.beginPath();
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 1;
-    ctx.lineTo(120, 60);
-    ctx.lineTo(120, 30);
-    ctx.lineTo(120, 30);
-    ctx.lineTo(130, 45);
-    ctx.lineTo(130, 45);
-    ctx.lineTo(135, 30);
-    ctx.lineTo(135, 30);
-    ctx.lineTo(140, 45);
-    ctx.lineTo(140, 45);
-    ctx.lineTo(150, 30);
-    ctx.lineTo(150, 30);
-    ctx.lineTo(150, 60);
-    ctx.stroke();
+    this.drawGrasses(ctx, 10, 10);
 
   }
 }
