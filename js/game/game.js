@@ -12,6 +12,7 @@ class Game {
     this.lastKey = null;
     this.startGame = false;
     this.difficulty = 500;
+    this.endGame = false;
 
     this.setDifficulty = this.setDifficulty.bind(this);
     this.startGameAnimation = this.startGameAnimation.bind(this);
@@ -76,9 +77,15 @@ class Game {
 
   gameAnimation(e) {
     setTimeout(() => {
-      requestAnimationFrame(this.gameAnimation);
+      if (this.endGame === false) {
 
-      this.mapKey(this.lastKey);
+        requestAnimationFrame(this.gameAnimation);
+        
+        this.mapKey(this.lastKey);
+      } else {
+
+        cancelAnimationFrame(this.gameAnimation);
+      }
     }, this.difficulty);
   }
 
@@ -146,6 +153,8 @@ class Game {
         this.map.whereSheep[1] === eachTrailingSheep[1]
       ) {
         alert("you lose");
+
+        this.endGame = true;
       }
     });
   }
