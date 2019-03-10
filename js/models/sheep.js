@@ -1,6 +1,3 @@
-import MovingObject from '../actions/moving_object.js';
-// const Victor = require("victor");
-
 class Sheep {
   constructor(ctx, x = 45, y = 45) {
     this.ctx = ctx;

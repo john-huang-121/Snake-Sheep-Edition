@@ -13,10 +13,10 @@ export default class Hay {
     const ctx = this.ctx;
 
     //black tile for testing purpose
-    ctx.beginPath();
-    ctx.fillStyle = "black";
-    ctx.fillRect(0 + this.x, 0 + this.y, 90, 90);
-
+    // ctx.beginPath();
+    // ctx.fillStyle = "black";
+    // ctx.fillRect(0 + this.x, 0 + this.y, 90, 90);
+    
     ctx.beginPath();
     ctx.fillStyle = "gold";
     ctx.fillRect(20 + this.x, 20 + this.y, 50, 50);    

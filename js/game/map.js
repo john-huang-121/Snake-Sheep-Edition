@@ -123,12 +123,44 @@ export default class Map {
     ctx.fillRect(0, 0, this.x, this.y);
 
     //testing purposes to see rendered tiles
-    ctx.clearRect(0, 0, 90, 90);
-    ctx.fillStyle = 'red';
-    ctx.fillRect(0, 0, 90, 90);
+    // ctx.clearRect(90, 0, 90, 90);
+    // ctx.fillStyle = 'red';
+    // ctx.fillRect(90, 0, 90, 90);
 
-    ctx.clearRect(810, 810, 900, 900);
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(810, 810, 900, 900);
+    //grass fill green
+    ctx.beginPath();
+    ctx.fillStyle = 'green';
+    ctx.lineTo(120, 60);
+    ctx.lineTo(120, 30);
+    ctx.lineTo(120, 30);
+    ctx.lineTo(130, 45);
+    ctx.lineTo(130, 45);
+    ctx.lineTo(135, 30);
+    ctx.lineTo(135, 30);
+    ctx.lineTo(140, 45);
+    ctx.lineTo(140, 45);
+    ctx.lineTo(150, 30);
+    ctx.lineTo(150, 30);
+    ctx.lineTo(150, 60);
+    ctx.fill();
+
+    //grass outline black
+    ctx.beginPath();
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.lineTo(120, 60);
+    ctx.lineTo(120, 30);
+    ctx.lineTo(120, 30);
+    ctx.lineTo(130, 45);
+    ctx.lineTo(130, 45);
+    ctx.lineTo(135, 30);
+    ctx.lineTo(135, 30);
+    ctx.lineTo(140, 45);
+    ctx.lineTo(140, 45);
+    ctx.lineTo(150, 30);
+    ctx.lineTo(150, 30);
+    ctx.lineTo(150, 60);
+    ctx.stroke();
+
   }
 }
