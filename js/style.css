@@ -1,19 +1,51 @@
 body {
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  background-color: #08070c;
 }
 
-.control-div {
+.game-header {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  border: 1px dashed;
-  margin: 100px;
-  padding: 0 200px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 880px;
+  height: 65px;
+  background-color: white;
 }
 
-.control-div > p {
+.game-header > p {
   font-size: 20px;
+  margin: 0 0;
+}
+
+.difficulty-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.difficulty-container > p {
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+.difficulty-container > ul {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0;
+  padding: 0 0;
+}
+
+.controls-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls-wrapper > p {
+  margin: 0 0 10px 0;
 }
 
 .movement-controls {
@@ -40,5 +72,5 @@ body {
   display: block;
   text-align: center;
   border: 1px solid black;
-  margin: 0;
+  margin: 0 0;
 }

@@ -7,11 +7,13 @@
   <title>Sheep Tag</title>
 </head>
 <body>
-  <canvas id="game-screen"></canvas>
-  <div class='control-div'>
-    <h1>Controls</h1>
+  <div class='canvas-wrapper'>
+    <canvas id="game-screen"></canvas>
+  </div>
+  <div class='game-header'>
+    <h1>Snake Sheep</h1>
     <p id='game-score'>Score: 0</p>
-    <div>
+    <div class='difficulty-container'>
       <p id='difficulty-display'>Difficulty: Medium</p>
       <ul>
         <button id='easy'>Easy</button>
@@ -19,22 +21,25 @@
         <button id='hard'>Hard</button>
       </ul>
     </div>
-    <p>Movement Controls</p> 
-    <div class='movement-controls'>
-      <div class='movement-top-box'>
-        <div class='move-box'>
-          <p>W</p>
+    <button class='refresh' onClick="window.location.reload()">Restart game</button>
+    <div class='controls-wrapper'>
+      <p>Movement Controls</p> 
+      <div class='movement-controls'>
+        <div class='movement-top-box'>
+          <div class='move-box'>
+            <p>W</p>
+          </div>
         </div>
-      </div>
-      <div class='movement-bottom-box'>
-        <div class='move-box'>
-          <p>A</p>
-        </div>
-        <div class='move-box'>
-          <p>S</p>
-        </div>
-        <div class='move-box'>
-          <p>D</p>
+        <div class='movement-bottom-box'>
+          <div class='move-box'>
+            <p>A</p>
+          </div>
+          <div class='move-box'>
+            <p>S</p>
+          </div>
+          <div class='move-box'>
+            <p>D</p>
+          </div>
         </div>
       </div>
     </div>
