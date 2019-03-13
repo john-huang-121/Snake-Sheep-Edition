@@ -13,6 +13,8 @@ class Game {
     this.startGame = false;
     this.difficulty = 500;
     this.endGame = false;
+    this.backgroundMusic = document.getElementById("game-music");
+    this.losingSound = document.getElementById('game-loss-sound');
 
     this.setDifficulty = this.setDifficulty.bind(this);
     this.startGameAnimation = this.startGameAnimation.bind(this);
@@ -66,7 +68,14 @@ class Game {
     this.startTime = new Date();
     this.lastKey = e;
 
-    if (this.startGame === false) {
+    if (
+        this.startGame === false &&
+        (e.code === 'KeyW' ||
+         e.code === 'KeyA' ||
+         e.code === 'KeyS' ||
+         e.code === 'KeyD')
+       ) {
+
       this.startGame = true;
 
       this.gameAnimation(e);
@@ -74,11 +83,13 @@ class Game {
   }
 
   gameAnimation(e) {
+
     setTimeout(() => {
       if (this.endGame === false) {
 
         requestAnimationFrame(this.gameAnimation);
-        
+
+        this.backgroundMusic.play();
         this.mapKey(this.lastKey);
       } else {
 
@@ -150,8 +161,11 @@ class Game {
         this.map.whereSheep[0] === eachTrailingSheep[0] &&
         this.map.whereSheep[1] === eachTrailingSheep[1]
       ) {
-        alert("you lose");
+        this.backgroundMusic.pause();
+        this.losingSound.play();
 
+        // alert("you lose");
+        
         this.endGame = true;
       }
     });
