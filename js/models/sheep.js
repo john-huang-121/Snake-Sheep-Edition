@@ -48,11 +48,11 @@ class Sheep {
   }
 
   moveSheep(moveX, moveY) {
-    if (this.x + moveX >= 0 && this.x + moveX <= 900) {
+    if (this.x + moveX >= 0 && this.x + moveX <= 990) {
       this.x += moveX;
     }
 
-    if (this.y + moveY >= 0 && this.y + moveY <= 900) {
+    if (this.y + moveY >= 0 && this.y + moveY <= 810) {
       this.y += moveY;
     }
   }

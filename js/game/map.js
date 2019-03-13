@@ -8,8 +8,8 @@ export default class Map {
     this.whereHay = [2,0];
     this.nextHay = [4,0];
     this.occupiedSpace = [];
-    this.x = 900;
-    this.y = 900;
+    this.x = 990;
+    this.y = 810;
 
     this.updateOccupiedSpace = this.updateOccupiedSpace.bind(this);
     this.generateGrid = this.generateGrid.bind(this);
@@ -19,12 +19,12 @@ export default class Map {
   }
 
   generateGrid() {
-    let array = new Array(10); // 10 deep with 10px, 10px as each grid block
+    let array = new Array(9); // 10 deep with 10px, 10px as each grid block
 
-    for (let i = 0; i < 10; i++) {
-      array[i] = new Array(10);
+    for (let i = 0; i < 9; i++) {
+      array[i] = new Array(11);
 
-      for (let j = 0; j < 10; j++) {
+      for (let j = 0; j < 11; j++) {
         array[i][j] = null;
       }
     }
@@ -74,13 +74,13 @@ export default class Map {
     }
 
     //update the location of the sheep and also not let it run off the grid
-    if ((this.whereSheep[0] + x) < 0 || (this.whereSheep[0] + x) > 9) {
+    if ((this.whereSheep[0] + x) < 0 || (this.whereSheep[0] + x) > 10) {
       this.whereSheep[0] = this.whereSheep[0];
     } else {
       this.whereSheep[0] = this.whereSheep[0] + x;
     }
 
-    if ((this.whereSheep[1] + y) < 0 || (this.whereSheep[1] + y) > 9) {
+    if ((this.whereSheep[1] + y) < 0 || (this.whereSheep[1] + y) > 8) {
       this.whereSheep[1] = this.whereSheep[1];
     } else {
       this.whereSheep[1] = this.whereSheep[1] + y;
@@ -100,8 +100,8 @@ export default class Map {
     let occupied = true;
 
     while (occupied) {
-      this.whereHay[0] = Math.floor(Math.random() * 10);
-      this.whereHay[1] = Math.floor(Math.random() * 10);
+      this.whereHay[0] = Math.floor(Math.random() * 11);
+      this.whereHay[1] = Math.floor(Math.random() * 9);
       
       if (this.grid[this.whereHay[1]][this.whereHay[0]] === null) {
         occupied = false;
@@ -119,44 +119,44 @@ export default class Map {
     let tileIncrementX = 90;
     let tileIncrementY;
 
-    for(let i = 0; i < gridY - 1; i += 2) {
+    for(let i = 0; i < gridY; i += 2) {
       tileIncrementY = 90 * i;
 
-      for(let j = 0; j < gridX - 1; j += 2) {
+      for(let j = 0; j < gridX; j += 2) {
 
         //grass fill green
         ctx.beginPath();
         ctx.fillStyle = 'green';
-        ctx.lineTo(120 + (tileIncrementX * j), 60 + (tileIncrementY));
-        ctx.lineTo(120 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(120 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(130 + (tileIncrementX * j), 45 + (tileIncrementY));
-        ctx.lineTo(130 + (tileIncrementX * j), 45 + (tileIncrementY));
-        ctx.lineTo(135 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(135 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(140 + (tileIncrementX * j), 45 + (tileIncrementY));
-        ctx.lineTo(140 + (tileIncrementX * j), 45 + (tileIncrementY));
-        ctx.lineTo(150 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(150 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(150 + (tileIncrementX * j), 60 + (tileIncrementY));
+        ctx.lineTo(30 + (tileIncrementX * j), 60 + (tileIncrementY));
+        ctx.lineTo(30 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(30 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(40 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(40 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(45 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(45 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(50 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(50 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(60 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(60 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(60 + (tileIncrementX * j), 60 + (tileIncrementY));
         ctx.fill();
         
         //grass outline black
         ctx.beginPath();
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
-        ctx.lineTo(120 + (tileIncrementX * j), 60 + (tileIncrementY));
-        ctx.lineTo(120 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(120 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(130 + (tileIncrementX * j), 45 + (tileIncrementY));
-        ctx.lineTo(130 + (tileIncrementX * j), 45 + (tileIncrementY));
-        ctx.lineTo(135 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(135 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(140 + (tileIncrementX * j), 45 + (tileIncrementY));
-        ctx.lineTo(140 + (tileIncrementX * j), 45 + (tileIncrementY));
-        ctx.lineTo(150 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(150 + (tileIncrementX * j), 30 + (tileIncrementY));
-        ctx.lineTo(150 + (tileIncrementX * j), 60 + (tileIncrementY));
+        ctx.lineTo(30 + (tileIncrementX * j), 60 + (tileIncrementY));
+        ctx.lineTo(30 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(30 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(40 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(40 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(45 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(45 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(50 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(50 + (tileIncrementX * j), 45 + (tileIncrementY));
+        ctx.lineTo(60 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(60 + (tileIncrementX * j), 30 + (tileIncrementY));
+        ctx.lineTo(60 + (tileIncrementX * j), 60 + (tileIncrementY));
         ctx.stroke();
       }
     }
@@ -169,7 +169,7 @@ export default class Map {
     ctx.fillStyle = 'darkgreen';
     ctx.fillRect(0, 0, this.x, this.y);
 
-    this.drawGrasses(ctx, 10, 10);
+    this.drawGrasses(ctx, 11, 9);
 
   }
 }

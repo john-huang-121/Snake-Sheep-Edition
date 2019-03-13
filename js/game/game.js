@@ -34,8 +34,6 @@ class Game {
   }
 
   setDifficulty(difficulty) {
-    console.log(difficulty);
-
     if (difficulty === 'easy') {
       this.difficulty = 1000;
 
