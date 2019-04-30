@@ -70,10 +70,10 @@ class Game {
 
     if (
         this.startGame === false &&
-        (e.code === 'KeyW' ||
-         e.code === 'KeyA' ||
-         e.code === 'KeyS' ||
-         e.code === 'KeyD')
+        (e.code === 'ArrowUp' ||
+         e.code === 'ArrowLeft' ||
+         e.code === 'ArrowDown' ||
+         e.code === 'ArrowRight')
        ) {
 
       this.startGame = true;
@@ -103,28 +103,28 @@ class Game {
     let sheepLoc = this.map.whereSheep;
 
     const moves = {
-      "119": [0, -90], //w
-      "97": [-90, 0], //a
-      "115": [0, 90], //s
-      "100": [90, 0] //d
+      "38": [0, -90], //w
+      "37": [-90, 0], //a
+      "40": [0, 90], //s
+      "39": [90, 0] //d
     };
 
     const pressedKey = e.keyCode;
 
     if (
-      pressedKey === 119 ||
-      pressedKey === 97 ||
-      pressedKey === 115 ||
-      pressedKey === 100
+      pressedKey === 38 ||
+      pressedKey === 37 ||
+      pressedKey === 40 ||
+      pressedKey === 39
     ) {
       //updates the map grid sheep location
-      if (pressedKey === 119) {
+      if (pressedKey === 38) {
         this.map.updateSheepLoc(0, -1, this.sheep, this.moveHistory, this.ctx);
-      } else if (pressedKey === 97) {
+      } else if (pressedKey === 37) {
         this.map.updateSheepLoc(-1, 0, this.sheep, this.moveHistory, this.ctx);
-      } else if (pressedKey === 115) {
+      } else if (pressedKey === 40) {
         this.map.updateSheepLoc(0, 1, this.sheep, this.moveHistory, this.ctx);
-      } else if (pressedKey === 100) {
+      } else if (pressedKey === 39) {
         this.map.updateSheepLoc(1, 0, this.sheep, this.moveHistory, this.ctx);
       }
 

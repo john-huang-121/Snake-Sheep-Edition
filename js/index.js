@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   
   game.drawAll();
   game.setupGame();
-  window.addEventListener("keypress", (e) => game.startGameAnimation(e));
+  window.addEventListener("keydown", (e) => game.startGameAnimation(e));
+  window.addEventListener("keydown", (e) => {
+    console.log(e.code);
+  });
 
   document.getElementById('easy').addEventListener('click', () => game.setDifficulty('easy'));
   document.getElementById('medium').addEventListener('click', () => game.setDifficulty('medium'));

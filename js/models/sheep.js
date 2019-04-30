@@ -18,25 +18,25 @@ class Sheep {
 
   drawMovingSheep(pressedKey) {
     //need to set up custom drawings for each key
-    if (pressedKey === 119) { //w
+    if (pressedKey === 38) { //w
       if (this.movementStyle % 2 === 0) {
         this.drawMoveUp();
       } else {
         this.drawRestingUp();
       }
-    } else if (pressedKey === 97) { //a
+    } else if (pressedKey === 37) { //a
       if (this.movementStyle % 2 === 0) {
         this.drawMoveLeft();
       } else {
         this.drawRestingLeft();
       }
-    } else if (pressedKey === 115) { //s
+    } else if (pressedKey === 40) { //s
       if (this.movementStyle % 2 === 0) {
         this.drawMoveDown();
       } else {
         this.drawRestingDown();
       }
-    } else if (pressedKey === 100) { //d
+    } else if (pressedKey === 39) { //d
       if (this.movementStyle % 2 === 0) {
         this.drawMoveRight();
       } else {
